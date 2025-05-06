@@ -24,13 +24,13 @@ public class MediatorImplTest {
     }
 
     @Test
-    void givenCommandShouldMapToCorrectHandler() {
+    void givenCommandShouldMapToCorrectHandler() throws Exception {
         String result = mediator.send(MediatorHelper.getTestCommand());
         assertEquals("command-handled", result);
     }
 
     @Test
-    void givenQueryShouldMapToCorrectHandler() {
+    void givenQueryShouldMapToCorrectHandler() throws Exception {
         String result = mediator.query(MediatorHelper.getTestQuery());
         assertEquals("query-handled", result);
     }

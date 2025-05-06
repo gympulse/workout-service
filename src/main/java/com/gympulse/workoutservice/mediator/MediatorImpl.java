@@ -21,14 +21,14 @@ public class MediatorImpl implements Mediator {
     }
 
     @Override
-    public <R, C extends Command<R>> R send(C command) {
+    public <R, C extends Command<R>> R send(C command) throws Exception {
         CommandHandler<C, R> handler = (CommandHandler<C, R>) commandHandlerMap.get(command.getClass());
         if (handler == null) throw new IllegalArgumentException("no handler found for command");
         return handler.handle(command);
     }
 
     @Override
-    public <R, Q extends Query<R>> R query(Q query) {
+    public <R, Q extends Query<R>> R query(Q query) throws Exception {
         QueryHandler<Q, R> handler = (QueryHandler<Q, R>) queryHandlerMap.get(query.getClass());
         if (handler == null) throw new IllegalArgumentException("no handler found for query");
         return handler.handle(query);

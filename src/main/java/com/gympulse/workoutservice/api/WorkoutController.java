@@ -16,8 +16,7 @@ import java.net.URI;
 @RequestMapping("/api/workout")
 public class WorkoutController {
 
-    final
-    Mediator mediator;
+    final Mediator mediator;
 
     public WorkoutController(Mediator mediator) {
         this.mediator = mediator;

@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,7 +37,7 @@ public class WorkoutControllerTest {
 
     @Test
     void givenValidBodyShouldReturnCreated() throws Exception {
-        var workout = new WorkoutRequest("workout 1");
+        var workout = new WorkoutRequest("workout 1", List.of(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID()));
         var json = gson.toJson(workout);
         var headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
