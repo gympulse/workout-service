@@ -1,12 +1,12 @@
 package com.gympulse.workoutservice.mediator;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Service
 public class MediatorImpl implements Mediator {
     public Map<Class<?>, CommandHandler<?, ?>> commandHandlerMap = new HashMap<>();
     public Map<Class<?>, QueryHandler<?, ?>> queryHandlerMap = new HashMap<>();

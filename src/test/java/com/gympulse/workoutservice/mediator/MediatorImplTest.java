@@ -1,5 +1,6 @@
 package com.gympulse.workoutservice.mediator;
 
+import com.gympulse.workoutservice.helper.MediatorHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,38 +9,6 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-class TestCommand implements Command<String> {
-}
-
-class TestQuery implements Query<String> {
-}
-
-class TestCommandHandler implements CommandHandler<TestCommand, String> {
-
-    @Override
-    public String handle(TestCommand command) {
-        return "command-handled";
-    }
-
-    @Override
-    public Class<TestCommand> getCommandType() {
-        return TestCommand.class;
-    }
-}
-
-class TestQueryHandler implements QueryHandler<TestQuery, String> {
-
-    @Override
-    public String handle(TestQuery query) {
-        return "query-handled";
-    }
-
-    @Override
-    public Class<TestQuery> getQueryType() {
-        return TestQuery.class;
-    }
-}
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -50,19 +19,19 @@ public class MediatorImplTest {
     @BeforeEach
     void setUp() {
         mediator = new MediatorImpl(
-                List.of(new TestCommandHandler()),
-                List.of(new TestQueryHandler()));
+                List.of(MediatorHelper.getCommandHandler()),
+                List.of(MediatorHelper.getQueryHandler()));
     }
 
     @Test
     void givenCommandShouldMapToCorrectHandler() {
-        String result = mediator.send(new TestCommand());
+        String result = mediator.send(MediatorHelper.getTestCommand());
         assertEquals("command-handled", result);
     }
 
     @Test
     void givenQueryShouldMapToCorrectHandler() {
-        String result = mediator.query(new TestQuery());
+        String result = mediator.query(MediatorHelper.getTestQuery());
         assertEquals("query-handled", result);
     }
 
