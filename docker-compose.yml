@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:17'
+    environment:
+      - 'POSTGRES_DB=workout-db'
+      - 'POSTGRES_PASSWORD=fpeJoc47sZX1iagj'
+      - 'POSTGRES_USER=user'
+    ports:
+      - '5432'
